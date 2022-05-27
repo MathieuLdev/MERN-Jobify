@@ -20,7 +20,11 @@ const JobsContainer = () => {
 	} = useAppContext();
 
 	useEffect(() => {
-		getJobs();
+		const delayForTyping = setTimeout(() => {
+			getJobs();
+		}, 600);
+
+		return () => clearTimeout(delayForTyping);
 	}, [search, searchStatus, searchType, sort, page]);
 
 	if (isLoading) {
